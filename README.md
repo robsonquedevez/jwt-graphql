@@ -1,0 +1,1 @@
+# Authenticate with JSON Web Token and GraphQL
