@@ -5,5 +5,6 @@
 - [GraphQL]()
 - [MongoDB]()
 - [Apollo-Server]()
+- [Typescript]()
 
 _...under development_
