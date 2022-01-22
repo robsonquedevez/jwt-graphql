@@ -1,4 +1,4 @@
-import { Arg, Query, Mutation, Resolver } from "type-graphql";
+import { Arg, Query, Mutation, Resolver, Authorized } from "type-graphql";
 import Tweet from "../schemas/Tweet";
 import mongoTweet from '../database/schemas/Tweet';
 
@@ -6,12 +6,14 @@ import mongoTweet from '../database/schemas/Tweet';
 class TweetController {
 
     @Query(returns => [Tweet], { name: 'tweets' })
+    @Authorized()
     async find() {
         const tweets = await mongoTweet.find();
         return tweets;
     }
 
     @Mutation(returns => Tweet, { name: 'createTweets' })
+    @Authorized()
     async create(
         @Arg("author") author: string,
         @Arg("description") description: string
@@ -26,6 +28,7 @@ class TweetController {
     }
 
     @Mutation(returns => Tweet, { name: "likedTweet" })
+    @Authorized()
     async likedTweet(
         @Arg("id") id: string
     ) {
@@ -43,6 +46,7 @@ class TweetController {
     }
 
     @Mutation(returns => Tweet, { name: "dislikedTweet" })
+    @Authorized()
     async dislikedTweet(
         @Arg("id") id: string
     ) {
